@@ -30,6 +30,14 @@ const Contents = styled(Box)`
   blockquote {
     font-size: 0.95em;
   }
+  ol {
+    list-style-type: decimal;
+    padding-inline-start: 20px;
+  }
+  ul {
+    list-style-type: initial;
+    padding-inline-start: 20px;
+  }
   h3 {
     font-size: 1.1em;
     margin: 20px 0 10px;
