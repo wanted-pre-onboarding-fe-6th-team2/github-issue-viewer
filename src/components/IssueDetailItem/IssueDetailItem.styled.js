@@ -22,6 +22,14 @@ const Text = styled(Typography)`
 const Contents = styled(Box)`
   line-height: 1.5;
   font-size: 0.95em;
+  p,
+  ol,
+  li,
+  pre,
+  code,
+  blockquote {
+    font-size: 0.95em;
+  }
   h3 {
     font-size: 1.1em;
     margin: 20px 0 10px;
