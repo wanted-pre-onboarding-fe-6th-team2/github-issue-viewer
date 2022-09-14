@@ -1,5 +1,5 @@
 import React from 'react';
-import { List } from '@mui/material';
+import { Box, List } from '@mui/material';
 import ViewListItem from '@/components/viewList/ViewListItem/ViewListItem';
 
 const ViewTemplate = () => {
@@ -67,11 +67,13 @@ const ViewTemplate = () => {
   ];
 
   return (
-    <List sx={{ width: '100%', maxWidth: 768, bgcolor: 'background.paper' }}>
-      {issues.map((issueInfo, id) => {
-        return <ViewListItem issueInfo={issueInfo} key={id} />;
-      })}
-    </List>
+    <Box sx={{ border: '4px dashed grey' }}>
+      <List sx={{ width: '100%', maxWidth: 768, bgcolor: 'background.paper' }}>
+        {issues.map((issueInfo, id) => {
+          return <ViewListItem issueInfo={issueInfo} key={id} />;
+        })}
+      </List>
+    </Box>
   );
 };
 
