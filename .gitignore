@@ -25,3 +25,6 @@ dist-ssr
 
 .eslintcache
 eslint-result.html
+
+.env*
+!.env.sample
