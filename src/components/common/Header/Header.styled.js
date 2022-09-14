@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 const Header = styled.header`
   width: 100%;
@@ -10,4 +11,15 @@ const Header = styled.header`
   border-bottom: 3px solid #000;
 `;
 
-export { Header };
+const GnbLink = styled(Link)`
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 0 0 0 20px;
+  padding: 10px;
+  border-radius: 10px;
+`;
+
+export { Header, GnbLink };
