@@ -7,10 +7,10 @@ const ViewListItem = ({ issueInfo }) => {
   return (
     <ListItem alignItems="flex-start">
       <ListItemAvatar>
-        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+        <Avatar alt="Remy Sharp" src={issueInfo.user.avatar_url} />
       </ListItemAvatar>
       <ListItemText
-        primary={`No.${issueInfo.number} - ${issueInfo.title}`}
+        primary={`${issueInfo.number} - ${issueInfo.title}`}
         secondary={
           <>
             <Typography
@@ -19,7 +19,7 @@ const ViewListItem = ({ issueInfo }) => {
               variant="body2"
               color="text.primary"
             >
-              작성자: {issueInfo.user},
+              작성자: {issueInfo.user.login},
             </Typography>
             <Typography
               sx={{ display: 'inline' }}
@@ -27,7 +27,15 @@ const ViewListItem = ({ issueInfo }) => {
               variant="body2"
               color="text.primary"
             >
-              &nbsp; 작성일 : {issueInfo.create_at}
+              &nbsp; 작성일 : {issueInfo.created_at}
+            </Typography>
+            <Typography
+              sx={{ display: 'inline' }}
+              component="span"
+              variant="body2"
+              color="text.primary"
+            >
+              &nbsp; 커멘트수 : {issueInfo.comments}
             </Typography>
           </>
         }
