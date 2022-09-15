@@ -1,16 +1,20 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ListItem, ListItemAvatar, Avatar, ListItemText, Typography } from '@mui/material';
-// import { ListItem, ListItemText, Typography } from '@mui/material';
+import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import ScheduleOutlinedIcon from '@mui/icons-material/ScheduleOutlined';
 
 const ViewListItem = ({ issueInfo }) => {
-  console.log(issueInfo);
+  const navigator = useNavigate;
+
   return (
-    <ListItem alignItems="flex-start">
+    <ListItem alignItems="flex-start" onClick={() => navigator(`/detail/${issueInfo.id}`)}>
       <ListItemAvatar>
         <Avatar alt="Remy Sharp" src={issueInfo.user.avatar_url} />
       </ListItemAvatar>
       <ListItemText
-        primary={`${issueInfo.number} - ${issueInfo.title}`}
+        primary={`${issueInfo.number}_ ${issueInfo.title}`}
         secondary={
           <>
             <Typography
@@ -19,7 +23,7 @@ const ViewListItem = ({ issueInfo }) => {
               variant="body2"
               color="text.primary"
             >
-              작성자: {issueInfo.user.login},
+              <AccountCircleOutlinedIcon fontSize="inherit" /> {issueInfo.user.login}
             </Typography>
             <Typography
               sx={{ display: 'inline' }}
@@ -27,7 +31,7 @@ const ViewListItem = ({ issueInfo }) => {
               variant="body2"
               color="text.primary"
             >
-              &nbsp; 작성일 : {issueInfo.created_at}
+              &nbsp; <ScheduleOutlinedIcon fontSize="inherit" /> {issueInfo.created_at}
             </Typography>
             <Typography
               sx={{ display: 'inline' }}
@@ -35,11 +39,12 @@ const ViewListItem = ({ issueInfo }) => {
               variant="body2"
               color="text.primary"
             >
-              &nbsp; 커멘트수 : {issueInfo.comments}
+              &nbsp; <ChatBubbleOutlineOutlinedIcon fontSize="inherit" /> {issueInfo.comments}
             </Typography>
           </>
         }
       />
+      <br />
     </ListItem>
   );
 };
