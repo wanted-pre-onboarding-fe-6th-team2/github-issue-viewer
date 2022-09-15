@@ -14,7 +14,7 @@ const IssueDetailsProvider = ({ children }) => {
           const issueDetailResponse = await issueApiService.getIssueDetail({
             owner: 'angular',
             repo: 'angular-cli',
-            issue_number: issueNumber,
+            issueNumber,
           });
           setIssueDetails(prevIssueDetails => [...prevIssueDetails, issueDetailResponse]);
         } catch (error) {

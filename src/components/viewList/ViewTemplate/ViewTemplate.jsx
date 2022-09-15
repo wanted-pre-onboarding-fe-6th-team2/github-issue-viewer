@@ -4,10 +4,13 @@ import useIssuesActions from '@/hooks/useIssuesActions';
 import useIssuesStore from '@/hooks/useIssuesStore';
 import ViewListItem from '@/components/viewList/ViewListItem/ViewListItem';
 import ViewAd from '@/components/viewList/ViewAd/ViewAd';
+import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 
 const ViewTemplate = () => {
   const { fetchIssues } = useIssuesActions();
   const issues = useIssuesStore();
+
+  const infiniteScrollTargetRef = useInfiniteScroll(fetchIssues);
 
   useEffect(() => {
     fetchIssues();
@@ -23,6 +26,7 @@ const ViewTemplate = () => {
           return <ViewListItem issueInfo={issueInfo} key={number} />;
         })}
       </List>
+      <div ref={infiniteScrollTargetRef} />
     </Box>
   );
 };

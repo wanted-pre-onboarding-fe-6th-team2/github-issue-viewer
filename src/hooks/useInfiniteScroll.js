@@ -1,33 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useCallback, useRef, useEffect } from 'react';
 
-const useInfiniteScroll = (targetRef, fetchMoreItemsFunc) => {
-  const [isFetching, setIsFetching] = useState(false);
+const useInfiniteScroll = (onIntersect, options) => {
+  const ref = useRef(null);
 
-  const intersectionObserverCallback = entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) setIsFetching(true);
-    });
-    setIsFetching(false);
-  };
-
-  useEffect(() => {
-    let observer;
-
-    if (targetRef) {
-      observer = new IntersectionObserver(intersectionObserverCallback);
-      observer.observe(targetRef);
-    }
-
-    return () => observer?.disconnect(targetRef);
-  }, [targetRef]);
+  const handleIntersect = useCallback(
+    (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) onIntersect(entry, observer);
+      });
+    },
+    [onIntersect]
+  );
 
   useEffect(() => {
-    if (!isFetching) return;
+    if (!ref.current) return undefined;
+    const observer = new IntersectionObserver(handleIntersect, options);
+    observer.observe(ref.current);
 
-    fetchMoreItemsFunc();
-  }, [isFetching, fetchMoreItemsFunc]);
+    return () => observer.disconnect();
+  }, [handleIntersect, ref, options]);
 
-  return [isFetching, setIsFetching];
+  return ref;
 };
 
 export default useInfiniteScroll;
