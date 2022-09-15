@@ -15,10 +15,10 @@ const ViewTemplate = () => {
 
   return (
     <Box sx={{ border: '4px dashed grey' }}>
-      <List sx={{ width: '100%', minWidth: 545, bgcolor: 'background.paper' }}>
+      <List sx={{ width: '100%', minWidth: 300, bgcolor: 'background.paper' }}>
         {issues.map((issueInfo, number) => {
           if (number === 4) {
-            return <ViewAd />;
+            return <ViewAd key={number} />;
           }
           return <ViewListItem issueInfo={issueInfo} key={number} />;
         })}
