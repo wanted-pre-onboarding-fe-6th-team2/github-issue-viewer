@@ -1,12 +1,8 @@
 import { Octokit } from '@octokit/core';
 
-const { VITE_GIT_TOKEN: GIT_TOKEN } = import.meta.env;
-
 class OctokitApiService {
   constructor() {
-    this.octokit = new Octokit({
-      auth: GIT_TOKEN,
-    });
+    this.octokit = new Octokit();
   }
 
   async request(url, option = {}) {
