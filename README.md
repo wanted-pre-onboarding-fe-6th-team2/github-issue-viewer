@@ -23,7 +23,7 @@ hyoungqu23">이형민</a></td>
 
 > ## 데모
 
-[🌎 데모 페이지](-)
+[🌎 데모 페이지](https://github-issue-viewer-team2.netlify.app/)
 
 > ## 실행 방법
 
@@ -65,34 +65,25 @@ yarn dev
 
 📦
 src
-├─ App.jsx
-├─ main.jsx
-├─ api
-│  ├─ core.js
-│  └─ issue.js
-├─ assets
-│  └─ react.svg
-├─ components
-│  └─ common
-│     ├─ Header
-│     ├─ Layout
-│     └─ Loading
-├─ constants
-│  └─ route.js
-├─ context
-│  ├─ IssueDetailsProvider.jsx
-│  └─ IssuesProvider.jsx
-├─ hooks
-│  ├─ useInfiniteScroll.js
-│  ├─ useIssueDetailActions.js
-│  ├─ useIssueDetailStore.js
-│  ├─ useIssuesActions.js
-│  └─ useIssuesStore.js
-├─ pages
-│  ├─ IssueDetail
-│  └─ IssueList
-└─ styles
-   └─ reset.js
+├─api
+├─assets
+├─components
+│  ├─common
+│  │  ├─Header
+│  │  ├─Layout
+│  │  └─Loading
+│  ├─IssueDetailItem
+│  └─viewList
+│     ├─ViewAd
+│     ├─ViewListItem
+│     └─ViewTemplate
+├─constants
+├─context
+├─hooks
+├─pages
+│  ├─IssueDetail
+│  └─IssueList
+└─styles
 
 ```
 
@@ -102,19 +93,22 @@ src
 
 ### Github API 연동
 
-- 요구사항 작성
+- 지정된 조건(open 상태, 코멘트 많은 순)에 맞게 데이터 요청 및 표시
 
 **해결방법**
 
-- 해결 방안 작성
+- github api 사용을 위한 octokit 의존성 추가하였다.
+- octokit api로직을 추상화 하였다.
+- octokit api를 통하여 IssueService(getIssueDetail, getIssues)를 구현하였다.
 
 ### Context API Provider 생성
 
-- 요구사항 작성
+- Context API를 활용한 API 연동
 
 **해결방법**
 
-- 해결 방안 작성
+- issue 리스트 데이터를 context API를 통해 전역적으로 관리하는 패턴으로 구현하였습니다.
+- useContext를 직접 호출하기 보단 커스텀 훅으로 한번 랩핑하여 Provider 외부에서 쓸 경우에 대한 예외처리 및 hook에 명시적인 이름을 붙혀줌으로써 사용성, 가독성에 한번 더 신경 써주었습니다.
 
 ### 공통 컴포넌트, Infinite Scroll
 
@@ -131,7 +125,12 @@ src
 
 ### 이슈 목록 페이지
 
-- 요구사항 작성
+- 이슈 목록 가져오기 API 활용
+- open 상태의 이슈 중 코멘트가 많은 순으로 정렬
+- 각 행에는 ‘이슈번호, 이슈제목, 작성자, 작성일, 코멘트수’를 표시
+- 다섯번째 셀에는 광고 이미지 출력 및 링크 연동
+- 화면을 아래로 스크롤 할 시 이슈 목록 추가 로딩(인피니티 스크롤)
+- UI는 데스크톱, 모바일에서 보았을 때 모두 읽기 편하게 구현
 
 **해결방법**
 
@@ -139,11 +138,15 @@ src
 
 ### 이슈 상세 페이지
 
-- 요구사항 작성
+- 이슈의 상세 내용 표시
+- ‘이슈번호, 이슈제목, 작성자, 작성일, 코멘트 수, 작성자 프로필 이미지, 본문' 표시
+- UI는 데스크톱, 모바일에서 보았을 때 모두 읽기 편하게 구현
 
 **해결방법**
 
-- 해결 방안 작성
+- `context API`를 통해 제목, 작성자, 작성일 등 관련 데이터를 전달받아 노출될 수 있도록 구현하였다.
+- 읽기 편할 수 있도록 `마크다운` 렌더링 라이브러리를 추가하여 가독성을 높여주었다.
+- 웹과 모바일에 대응할 수 있도록 구현하였다.
 
 > ## 기술 스택
 
