@@ -6,10 +6,19 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import ScheduleOutlinedIcon from '@mui/icons-material/ScheduleOutlined';
 
 const ViewListItem = ({ issueInfo }) => {
-  const navigator = useNavigate;
+  const navigator = useNavigate();
+  const onMoveDetail = () => {
+    const issueId = issueInfo.id;
+    navigator(`/detail/${issueId}`);
+  };
 
   return (
-    <ListItem alignItems="flex-start" onClick={() => navigator(`/detail/${issueInfo.id}`)}>
+    <ListItem
+      alignItems="flex-start"
+      onClick={() => {
+        onMoveDetail();
+      }}
+    >
       <ListItemAvatar>
         <Avatar alt="Remy Sharp" src={issueInfo.user.avatar_url} />
       </ListItemAvatar>
