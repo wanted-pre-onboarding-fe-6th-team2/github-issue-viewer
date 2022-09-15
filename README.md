@@ -100,7 +100,7 @@ src
 
 > ## 과제 요구사항 및 해결 방법
 
-#### Github API 연동
+### Github API 연동
 
 - 요구사항 작성
 
@@ -108,9 +108,7 @@ src
 
 - 해결 방안 작성
 
-<hr/>
-
-#### Context API Provider 생성
+### Context API Provider 생성
 
 - 요구사항 작성
 
@@ -118,9 +116,20 @@ src
 
 - 해결 방안 작성
 
-<hr/>
+### 공통 컴포넌트, Infinite Scroll
 
-#### 공통 컴포넌트, Infinite Scroll
+- 공통 Header 컴포넌트
+- Infinite scroll
+- 데이터 요청 중 로딩 표시를 위한 Loading 컴포넌트
+
+**해결방법**
+
+- `DOM`의 `Scroll Event`를 활용하면 상대적으로 익숙하여 구현하기는 쉬우나, 최적화를 따로 해주어야 하고, 추후 `TopButton` 등의 기능을 추가할 때 reflow를 일으킬 가능성이 있으므로, 성능적으로 좋지 않을 수 있다. 따라서 `IntersectionObserver`를 활용하여 `Infinite Scroll`을 구현했다.
+- 페이지 하단에 임시 요소를 생성하고, 해당 요소가 뷰포트에 감지되는 순간 다음 데이터를 가져오는 방식으로 구현했다.
+- 공통 Header와 Layout 컴포넌트을 통해 통일성 있는 UI를 구현했다.
+- Loading 컴포넌트를 통해 데이터 요청 중 Skeleton Loading을 구현했다.
+
+### 이슈 목록 페이지
 
 - 요구사항 작성
 
@@ -128,19 +137,7 @@ src
 
 - 해결 방안 작성
 
-<hr/>
-
-#### 이슈 목록 페이지
-
-- 요구사항 작성
-
-**해결방법**
-
-- 해결 방안 작성
-
-<hr/>
-
-#### 이슈 상세 페이지
+### 이슈 상세 페이지
 
 - 요구사항 작성
 
