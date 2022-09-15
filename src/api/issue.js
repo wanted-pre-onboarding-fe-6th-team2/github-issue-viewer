@@ -6,14 +6,20 @@ class IssueService {
   }
 
   getIssueDetail = (option = {}) => {
-    return this.octokitApiService.request(
-      'GET /repos/{owner}/{repo}/issues/{issue_number}',
-      option
-    );
+    const { owner, repo, issueNumber } = option;
+    return this.octokitApiService.request('GET /repos/{owner}/{repo}/issues/{issue_number}', {
+      owner,
+      repo,
+      issue_number: issueNumber,
+    });
   };
 
   getIssues = (option = {}) => {
-    return this.octokitApiService.request('GET /repos/{owner}/{repo}/issues', option);
+    const { owner, repo, page } = option;
+    return this.octokitApiService.request(
+      'GET /repos/{owner}/{repo}/issues?sort=comments&page={page}',
+      { owner, repo, page }
+    );
   };
 }
 
