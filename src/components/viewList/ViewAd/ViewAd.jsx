@@ -8,8 +8,8 @@ const ViewAd = () => {
     <ListItem alignItems="center">
       <ListItemText>
         <a href="https://thingsflow.com/ko/home">
-          <img src={thingsflowLogo} alt="things flow Logo" width="100" height="100" />
-          <img src={logoDesc} alt="things flow Logo" width="400" height="100" />
+          <img src={thingsflowLogo} alt="things flow Logo" width="80" height="80" />
+          <img src={logoDesc} alt="things flow Logo" width="300" height="80" />
         </a>
       </ListItemText>
     </ListItem>

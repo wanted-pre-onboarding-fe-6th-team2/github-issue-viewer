@@ -8,7 +8,7 @@ import ScheduleOutlinedIcon from '@mui/icons-material/ScheduleOutlined';
 const ViewListItem = ({ issueInfo }) => {
   const navigator = useNavigate();
   const onMoveDetail = () => {
-    const issueId = issueInfo.id;
+    const issueId = issueInfo.number;
     navigator(`/detail/${issueId}`);
   };
 
