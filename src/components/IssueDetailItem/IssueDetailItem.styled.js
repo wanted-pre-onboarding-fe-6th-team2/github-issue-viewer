@@ -2,6 +2,7 @@ import { Avatar, List, styled, Typography, Box } from '@mui/material';
 
 const ListWrap = styled(List)`
   flex-grow: 1;
+  margin-bottom: 100px;
 `;
 const ImageWrap = styled(Avatar)`
   width: 60px;
